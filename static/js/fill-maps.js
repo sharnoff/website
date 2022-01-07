@@ -5,7 +5,7 @@ const STORAGE_PREFIX_ZOOM = 'map-zoom#'
 const STORAGE_PREFIX_COORDS = 'map-coords#'
 const STORAGE_PREFIX_ID = 'map-id#'
 
-window.addEventListener('load', (event) => {
+window.addEventListener('DOMContentLoaded', (event) => {
     let { mapFrame, photos, config } = JSON.parse(document.getElementById(MAP_DOM_ID).getAttribute('data-map'))
 
     // We want to check if the previous exact map used for this page is the same; if it is, the
