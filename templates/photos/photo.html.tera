@@ -1,0 +1,128 @@
+{% extends "photos/base" %}
+
+{% block head %}
+    {# We need to include the leaflet stylesheet first so that our own overrides it #}
+    {% if img.coords %}
+        {% include "photos/map-header" %}
+    {% endif %}
+
+    {{ super() }}
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock head %}
+
+{% block title %}{{ img.title | escape | safe }}{% endblock title %}
+{% block body_class %}"center-body photo-page"{% endblock body_class %}
+
+{% block full_body %}
+<div id="header-content-wrapper">
+    <header id="site-header">
+        {# re-insert the header, in a different location #}
+        {% block header %}
+            {{ super() }}
+        {% endblock header %}
+    </header>
+
+    <div class="title">{{ img.title | escape | safe }}</div>
+    <div class="photo-split-view">
+        <div class="photo-box">
+            <img src="{{ "/photos/img-file/" ~ img.file_name ~ "?size=full&rev=" ~ img.full_img_hash }}" {% if img.alt_text %}alt="{{ img.alt_text | escape | safe }}"{% endif %}>
+
+            {% if previous %}
+                {% set ref = "/photos/view/" ~ previous.file_name %}
+                {% if album %}
+                    {% set ref = ref ~ "?album=" ~ album %}
+                {% endif %}
+
+                <div class="photo-nav-button photo-nav-prev">
+                    <a class="material-icons"
+                        href="{{ ref }}"
+                    >navigate_before</a>
+                </div>
+            {% endif %}
+
+            {% if next %}
+                {% set ref = "/photos/view/" ~ next.file_name %}
+                {% if album %}
+                    {% set ref = ref ~ "?album=" ~ album %}
+                {% endif %}
+
+                <div class="photo-nav-button photo-nav-next">
+                    <a class="material-icons"
+                        href="{{ ref }}"
+                    >navigate_next</a>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="photo-meta-panel">
+            {# Date/time photo was taken #}
+            <div class="photo-meta-field">
+                <span class="photo-day-album">
+                    <a href="{{ "/photos/album/" ~ img.day_album.path }}">
+                        {{ img.day_album.name | safe }}
+                    </a>
+                </span>
+                <span class="photo-time">{{ img.local_time }}</span>&nbsp;<span class="photo-tz">{{ img.tz_offset }}</span>
+            </div>
+
+            {# Camera info about the photo #}
+            <div class="photo-meta-field photo-meta-camera">
+                <div class="photo-camera">
+                    <span class="camera-make">{{ img.camera.id[0] }}</span>
+                    <span class="camera-model">{{ img.camera.id[1] }}</span>
+                </div>
+                {% if img.camera.lens_id %}
+                    <div class="photo-lens">
+                        <span class="lens-make">{{ img.camera.lens_id[0] }}</span>
+                        <span class="lens-model">{{ img.camera.lens_id[1] }}</span>
+                    </div>
+                {% endif %}
+                <div class="photo-meta-stats">
+                    <div class="photo-meta-stats-column">
+                        <div class="photo-exposure">{{ img.camera.exposure_time }} s</div>
+                        <div class="photo-fstop"><em>f</em> {{ img.camera.f_stop }}</div>
+                    </div>
+                    <div class="photo-meta-stats-column">
+                        <div class="photo-iso">{{ img.camera.iso }}</div>
+                        <div class="photo-focal-length">{{ img.camera.focal_length }} mm</div>
+                    </div>
+                </div>
+            </div>
+
+            {# Location the photo was taken #}
+            {% if img.coords %}
+                <div class="photo-meta-field photo-meta-map">
+                    {% set photos = [img] %}
+                    {% set map_name = "single-photo-map" %}
+                    {% set map_id = img.file_name %}
+                    {% include "photos/map-embed" %}
+
+                    <div class="photo-map-link">
+                        <a class="softlink" href="/photos/map">View full map</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if img.albums | length >= 1 %}
+        <div class="photo-albums-tags">
+            Albums:
+            {% for album in img.albums %}
+                <a class="photo-album-tag softlink" href={{ "/photos/album/" ~ album.path }}>{{ album.name }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="photo-description">
+        {{ img.description | safe }}
+    </div>
+</div>
+
+<footer id="site-footer">
+    {% block footer %}
+        {{ super() }}
+    {% endblock footer %}
+</footer>
+{% endblock full_body %}

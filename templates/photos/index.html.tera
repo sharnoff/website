@@ -1,0 +1,35 @@
+{% extends "photos/base" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    {% include "photos/script-header" %}
+{% endblock head %}
+
+{% block title %}Photos | sharnoff.io{% endblock title %}
+{% block body_class %}"center-body photos-index"{% endblock body_class %}
+
+{% block content %}
+    <div class="title">(my) Photography</div>
+
+    <div class="photos-blurb">
+        Something something about taking photos.
+    </div>
+
+    <div class="photos-list-nav">
+        <p>Quick links</p>
+
+        <ul>
+            <li> <a class="softlink" href="/photos/album/all">All photos</a>
+            <li> <a class="softlink" href="/photos/albums">Albums</a>
+            <li> <a class="softlink" href="/photos/map">Photo Map</a>
+        </ul>
+    </div>
+
+    <div class="photos-default-album-header title">Some of my favorite photos:</div>
+
+    {% set current_album = favorites.path %}
+    {% set photos = favorites.photos %}
+    {% include "photos/flex-grid" %}
+
+{% endblock content %}

@@ -1,0 +1,11 @@
+{
+    "minColumns": 1,
+    "maxColumns": 10,
+    "minColumnWidth": 300,
+    "columnWidthRange": { "start": 150, "end": 800 },
+    "padding": 5,
+    "maxColumnCrop": 0.05,
+    "maxMultiCrop": 0.15,
+    "maxMultiColumnHeightMultiplier": 1.2,
+    "maxSequentialMulti": 1
+}

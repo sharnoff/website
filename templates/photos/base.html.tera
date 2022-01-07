@@ -1,0 +1,19 @@
+{% extends "base" %}
+
+{% block header %}
+    {{ super() }}
+    <link rel="stylesheet" href="/style/photos.css">
+{% endblock header %}
+
+{% block footer %}
+    {# Separate inner block for the photos usage -- so that we can remove it on a per-page basis #}
+    <div class="photos-usage-notice">
+        <p>
+        All images are licensed under <a class="softlink" href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> unless explicitly stated otherwise.
+        <br class="footer-br">
+        Any usage of these images <em>must</em> provide attribution in the form of a link to this site.
+        </p>
+    </div>
+
+    {{ super() }}
+{% endblock footer %}

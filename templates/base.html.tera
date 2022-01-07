@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{# Basic items common to every HTML page in the website #}
+
+<html lang="en">
+<head>
+    {% block head %}
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="/style/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono">
+    <link rel="shortcut icon" href="/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock head %}
+</head>
+<body class={% block body_class %}""{% endblock body_class %}>
+    {# A full block for the body, used when everything needs to be rewritten #}
+    {% block full_body %}
+    <header id="site-header">
+        {% block header %}
+        <nav style="display: flex">
+            <span style="flex-grow: 2">
+                <a class="quietlink header-link" href="/">sharnoff.io</a>
+            </span>
+            <!-- <a class="quietlink header-link" href="/blog">Blog</a> -->
+            <!-- <a class="quietlink header-link" href="/projects">Projects</a> -->
+            <a class="quietlink header-link" href="/photos">Photos</a>
+            <!-- <a class="quietlink header-link" href="/projects">About</a> -->
+        </nav>
+        {% endblock header %}
+    </header>
+
+    <div id="content">
+        {% block content %}{% endblock content %}
+    </div>
+
+    <footer id="site-footer">
+        {% block footer %}
+            <p>&copy; Copyright Max Sharnoff 2021</p>
+        {% endblock footer %}
+    </footer>
+    {% endblock full_body %}
+</body>
+</html>

@@ -1,0 +1,287 @@
+:root {
+    --album-preview-img-size: min(min(30vh, 30vw), max(min(10vh, 10vw), 200px));
+}
+
+/*** Index page ***/
+.photos-index #content {
+    max-width: 120ch;
+}
+
+.photos-index .title:first-child { font-size: 200%; margin-bottom: 0.1em }
+
+/*** Albums page ***/
+.photos-albums-page .title { font-size: 150%; }
+
+.album-previews-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.all-album-previews {
+    margin: 0 1ch 2em 1ch;
+}
+
+.location-album::before, .day-album::before {
+    position: absolute;
+    transform: translateX(-1.2ch);
+    font-family: "Material Icons";
+}
+.location-album::before { content: "\e8b4" /* location icon */ }
+.day-album::before { content: "\e8df" /* calendar (today) icon */ }
+
+.album-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: inherit;
+    margin: 0 -1ch 1em -1ch;
+}
+
+.album-preview-box {
+    margin: .5ch 1ch;
+}
+
+.album-preview-img-container {
+    height: var(--album-preview-img-size);
+    width: var(--album-preview-img-size);
+    margin: auto;
+}
+
+.album-preview-box a, .album-preview-box img { width: inherit; height: inherit }
+.album-preview-box img { object-fit: cover }
+
+.album-preview-name {
+    text-align: center;
+}
+
+@media {
+    .photos-default-album-header {
+        margin-bottom: .45em;
+        font-size: 150%
+    }
+}
+@media (max-width: 700px) {
+    .photos-default-album-header {
+        margin-bottom: 1.65em;
+        font-size: 150%
+    }
+}
+
+
+
+/*** Photo map page ***/
+body.map-page { height: 100vh }
+
+.map-page #content { flex: 1 1 auto; margin: .5em 1.5em 0 1.5em }
+.map { width: 100%; height: 100% }
+
+/* The default leaflet popups have a little too much padding. */
+.leaflet-popup-content { margin: 5px }
+
+.map-page #site-header { max-width: none; margin-bottom: 0 }
+
+.map-page #site-footer {
+    height: 1.5em;
+    /* line-height ≠ 0 causes the browser to mis-calculate the actual size. */
+    line-height: 0;
+    margin: 0 0 .5em 0;
+}
+
+
+
+/*** Album viewer ***/
+.album-page #site-header, .album-page #content { max-width: max(90%, 80ch) }
+.album-page .title { font-size: 200% }
+.photo-album-description { margin: 1em 0 4ch 0 }
+
+@media (max-width: 132ch) {
+    .album-page .day-album::before, .album-page .location-album::before { display: none }
+}
+@media (min-width: 132ch) {
+    .album-page .day-album::before, .album-page .location-album::before { display: block }
+}
+
+
+
+/*** Flex grid and its components ***/
+.flex-grid {
+    position: relative;
+    width: 100%;
+}
+/* Position the slider just above the grid, but still as a child. */
+.photo-flex-grid-slider {
+    width: inherit;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: -3.75ch;
+}
+.photo-flex-grid-slider>input { margin-left: 2ch; }
+.photo-smallbox {
+    font-size: 70%;
+    color: var(--text-color-inverse);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.photo-smallbox img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.photo-smallbox .photo-overlay {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    width: 100%; height: 100%;
+    background-color: #0005;
+
+    opacity: 0;
+    transition: 0.3s ease;
+}
+.photo-smallbox:hover .photo-overlay { opacity: 1; }
+
+.photo-overlay { position: relative }
+.photo-caption { position: absolute; left: 1ch; bottom: 1ch; color: var(--text-color-inverse) }
+.photo-caption>* { display: block }
+
+
+
+/*** Full page photo viewer ***/
+.photo-page #site-header { max-width: 100% }
+.photo-page>#content>.title { margin-bottom: 2ch; }
+
+/* mobile */
+@media {
+    .photo-page #header-content-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .photo-split-view {
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+
+    .photo-box {
+        width: 100%;
+        position: relative;
+        background: black;
+        line-height: 0;
+        margin-bottom: 0.5em;
+    }
+
+    .photo-meta-panel { width: 100% }
+
+    .photo-meta-field { margin-bottom: .5em }
+    .photo-meta-stats { margin-top: .3em }
+
+    .photo-meta-map { height: calc(85vw - 4ch) }
+}
+/* desktop */
+@media (min-width: 800px) {
+    .photo-page #header-content-wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .photo-split-view {
+        display: flex;
+        height: 1px;
+        min-height: 65vh;
+        flex-grow: 2;
+    }
+
+    .photo-box {
+        width: 100%;
+        position: relative;
+        height: 100%;
+        background: black;
+        line-height: 0; /* prevents a small mismatch between .photo-box and inner image size */
+    }
+
+    .photo-meta-panel {
+        width: min(500px, 30%);
+        margin-left: 2ch;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .photo-meta-field { margin-top: 1.7em }
+    .photo-meta-field:first-child { margin-top: 0 }
+
+    .photo-albums-tags, .photo-description {
+        width: calc((100% + 4ch) - min(500px, 30%));
+    }
+
+    .photo-description {
+        text-align: justify;
+    }
+}
+
+.photo-box img {
+    position: relative;
+    width: inherit;
+    height: inherit;
+    object-fit: contain;
+}
+
+.photo-nav-button {
+    position: absolute;
+    color: white;
+    height: 3em;
+    top: 0; bottom: 0;
+    margin-top: auto; margin-bottom: auto;
+    line-height: 1em;
+}
+.photo-nav-button .material-icons { font-size: 3em; }
+.photo-nav-button a { text-decoration: none; color: inherit; }
+
+.photo-nav-prev { left: 0; }
+.photo-nav-next { right: 0; }
+.photo-nav-button-hollow { color: darkgrey; }
+
+.photo-day-album { margin-right: 1ch }
+.photo-time { margin-right: .3ch }
+.photo-tz { font-size: 81%; color: #494c50 }
+
+.photo-meta-camera>* {
+    margin-left: 2ch;
+}
+
+.camera-make, .lens-make { font-size: 90%; color: #494c50 }
+
+.photo-meta-stats { display: flex; flex-direction: row; }
+.photo-meta-stats-column { display: flex; flex-direction: column; flex: 1; }
+
+.photo-camera::before, .photo-lens::before, .photo-iso::before, .photo-fstop::before,
+.photo-focal-length::before, .photo-exposure::before {
+    position: absolute;
+    font-family: "Material Icons";
+    transform: translateX(-1.2ch);
+}
+
+.photo-camera::before { content: "\e412"; }
+.photo-lens::before { content: "\e3fa"; }
+.photo-iso::before { content: "\e3f6"; }
+.photo-fstop::before { content: "\e3af"; }
+.photo-focal-length::before { content: "\e3b4"; }
+.photo-exposure::before { content: "\e43d"; }
+
+.photo-meta-field.photo-meta-map {
+    min-height: 200px; max-height: 400px;
+    flex: 1 1 auto;
+}
+.photo-map-link {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 90%;
+}
+
+.photo-page .title { margin-bottom: .5em; }
+.photo-albums-tags { margin-top: .5em; font-size: 90% }
+.photo-album-tag { font-size: 90%; margin-left: 1ch }
+.photo-description { margin-bottom: 1em; }

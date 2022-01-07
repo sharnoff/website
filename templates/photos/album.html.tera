@@ -1,0 +1,28 @@
+{% extends "photos/base" %}
+
+{% block head %}
+    {{ super() }}
+    {% include "photos/script-header" %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock head %}
+
+{% block title %}{{ name }}{% endblock title %}
+{% block body_class %}"center-body album-page"{% endblock body_class %}
+
+{% block content %}
+
+    {% if kind == "Day" %}
+        {% set album_type_class = "day-album" %}
+    {% elif kind == "Location" %}
+        {% set album_type_class = "location-album" %}
+	{% else %}
+		{% set album_type_class = "" %}
+    {% endif %}
+
+	<div class="title {{ album_type_class }}">{{ name }}</div>
+	<div class="photo-album-description">{{ description | safe }}</div>
+
+	{% set current_album = path %}
+    {% include "photos/flex-grid" %}
+
+{% endblock content %}

@@ -1,0 +1,11 @@
+{# Template code for a Leaflet map, given an array of photos #}
+
+<div class="map" id="leaflet-map"
+    data-map="{
+        &quot;mapFrame&quot;: {{ map_view | json_encode() | escape | safe }},
+        &quot;photos&quot;: {{ photos | json_encode() | escape | safe }},
+        &quot;config&quot;: {
+            &quot;name&quot;: {{ map_name | json_encode() | escape | safe }},
+            &quot;id&quot;: {{ map_id | json_encode() | escape | safe }}
+        }
+    }"></div>

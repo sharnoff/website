@@ -1,0 +1,14 @@
+{# helper for photos/index #}
+
+{% set href = "/photos/album/" ~ album.path %}
+
+<div class="album-preview-box">
+    <div class="album-preview-img-container">
+        <a href="{{ href }}">
+            {% set img_src = "/photos/img-file/" ~ album.cover_img.file_name ~ "?size=small&rev=" ~ album.cover_img.smaller.hash %}
+            <img src="{{ img_src }}">
+        </a>
+    </div>
+    
+    <div class="album-preview-name"><a href="{{ href }}">{{ album.name | safe }}</a></div>
+</div>

@@ -1,0 +1,22 @@
+{% extends "base" %}
+{# Using "base" instead of "photos/base" so that we don't have the usage notice for photos in the
+footer #}
+
+{% block head %}
+    {% include "photos/map-header" %}
+
+    {{ super() }}
+
+    <link rel="stylesheet" href="/style/photos.css">
+{% endblock head %}
+
+{% block title %}Photos map | sharnoff.io{% endblock title %}
+{% block body_class %}"center-body map-page"{% endblock body_class %}
+
+{% block content %}
+
+    {% set map_name = "full-page-map" %}
+    {% set map_id = "main" %}
+    {% include "photos/map-embed" %}
+
+{% endblock content %}

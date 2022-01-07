@@ -1,0 +1,4 @@
+{# snippet to add in <head> so that scripts for display a flex-grid are loaded properly #}
+
+<script src="/js/flex-grid.js" async></script>
+<script src="/js/load-imgs.js" async></script>

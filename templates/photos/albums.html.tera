@@ -1,0 +1,35 @@
+{% extends "photos/base" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock head %}
+
+{% block body_class %}"center-body photos-albums-page"{% endblock body_class %}
+
+{% block content %}
+    <div class="album-previews-container">
+        <div class="all-album-previews">
+            <div class="normal-album album-list-header title">Curated albums</div>
+            <div class="album-list">
+                {% for album in normal_albums %}
+                    {% include "photos/album-preview-box" %}
+                {% endfor %}
+            </div>
+
+            <div class="location-album album-list-header title">Locations</div>
+            <div class="album-list">
+                {% for album in locations %}
+                    {% include "photos/album-preview-box" %}
+                {% endfor %}
+            </div>
+
+            <div class="day-album album-list-header title">Dates</div>
+            <div class="album-list">
+                {% for album in days %}
+                    {% include "photos/album-preview-box" %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

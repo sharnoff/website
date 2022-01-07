@@ -1,0 +1,28 @@
+{# In-place dynamic grid of photos, using the 'photos' list in the current context #}
+
+<div class="flex-grid" id="flex-grid"
+        data-imgs="{
+            {% if current_album %}
+                &quot;album&quot;: {{ current_album | json_encode() | escape | safe }},
+            {% endif %}
+            &quot;settings&quot;: {{ flex_grid_settings | json_encode() | escape | safe }},
+            &quot;photos&quot;: {{ photos | json_encode() | escape | safe }}
+        }">
+
+    <div class="photo-flex-grid-slider">
+        Column size:
+        <input type="range"
+            min="{{ flex_grid_settings.columnWidthRange.start }}"
+            max="{{ flex_grid_settings.columnWidthRange.end }}"
+            value="{{ flex_grid_settings.minColumnWidth }}">
+    </div>
+
+    <noscript>
+        <div><p>Javascript is used on this page for aesthetics and performance.
+                    You may see increased bandwidth usage without it.<p></div>
+
+        {% for photo in photos %}
+            {% include "photos/photo-smallbox" %}
+        {% endfor %}
+    </noscript>
+</div>

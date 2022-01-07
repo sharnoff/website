@@ -1,0 +1,3 @@
+[global]
+template_dir = "templates/"
+address = "0.0.0.0"

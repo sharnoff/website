@@ -1,0 +1,113 @@
+[
+    ["favorites", {
+        "name": "Favorites",
+        "display": "from_first",
+        "description": "A selection of my favorite photos, in order of whatever I was most in love with last\n",
+        "cover_img": "abandoned-railway-bridge",
+        "photos": [
+            "abandoned-railway-bridge",
+            "inattentive-monarch",
+            "sf-layers",
+            "snowy-seagull-sitting",
+            "downtown-oaktown",
+            "tesco-bird-2",
+            "dad-with-camera",
+            "parks-rd",
+            "contra-costa-rose",
+            "mt-tam-vulture-1",
+            "temescal-poppies-1",
+            "duckshake",
+            "tree-fungus",
+            "succulent-sunset"
+        ]
+    }],
+    ["bay-area", {
+        "name": "SF Bay Area",
+        "kind": "location",
+        "display": "from_last",
+        "description": "Photos I've taking while out and about (or at home) in the San Francisco Bay Area\n",
+        "cover_img": "downtown-oaktown",
+        "photos": [
+            "succulent-sunset", "downtown-oaktown", "golden-hour-grass", "temescal-poppies-1",
+            "temescal-poppies-2", "contra-costa-rose", "buena-vista-rose-1", "buena-vista-rose-2",
+			"death-stare", "inattentive-monarch", "feline-focus", "eyes-in-the-dark",
+			"westpoint-bench-1", "westpoint-bench-2", "mt-tam-vulture-1", "mt-tam-vulture-2",
+			"kz-above-the-clouds", "pantoll-rd-overlook", "sf-layers", "sunset-crane",
+			"golden-duck-hiding", "golden-duck", "golden-duck-and-friend", "dad-with-camera",
+			"merritt-sanctuary-bird", "crack-in-the-sky"
+        ]
+    }],
+    ["oxford", {
+        "name": "Oxford",
+        "kind": "location",
+        "display": "from_last",
+        "description": "A collection of photos taken during my time as a student at Oxford",
+        "cover_img": "boathouse-bridge",
+        "photos": [
+            "meadows-morning-tiles", "cherwell-fog", "eager-squirrel", "glowing-fog-tree",
+			"boathouse-bridge", "morning-glory", "maple-in-the-water", "quiet-bench",
+			"seagull-swoop", "duck-on-the-rocks", "duckshake", "merton-birds-1", "merton-birds-2",
+			"merton-birds-3", "parks-rd", "woe-is-the-bodleian", "house-on-the-thames",
+			"meadows-cow", "sheepless-field", "tesco-bird-1", "tesco-bird-2",
+			"snowy-seagull-landing", "snowy-seagull-sitting", "meadow-snowdrops",
+			"abandoned-railway-bridge"
+        ]
+    }],
+    ["york", {
+        "name": "York",
+        "kind": "location",
+        "display": "from_last",
+        "description": "Some of the first photos I took, while staying the winter at a house in the suburbs of York\n\nThese photos are from when I was first getting into photography with a \"proper\" camera, starting\nback in December 2020. Some of them are a bit lackluster by my more recent standards, but a couple\nstand out (notably: [\"Tree Fungus\"] and [\"Lone Tree\"])\n\n[\"Tree Fungus\"]: /photos/img/tree-fungus?album=york\n[\"Lone Tree\"]: /photos/img/lone-tree?album=york\n",
+        "cover_img": "tree-fungus",
+        "photos": [
+			"frosty-leaves-1", "frosty-leaves-2", "tree-fungus", "lone-tree", "myopic-moss",
+			"cloud", "crocus"
+        ]
+    }],
+    ["animals", {
+        "name": "Animals",
+        "display": "from_last",
+        "description": "All the best photos of furry, feathery, or otherwise cuddly animal friends :)\n",
+        "cover_img": "snowy-seagull-sitting",
+        "photos": [
+			"death-stare", "inattentive-monarch", "feline-focus", "eyes-in-the-dark",
+			"mt-tam-vulture-1", "mt-tam-vulture-2", "golden-duck-hiding", "golden-duck",
+			"golden-duck-and-friend", "merritt-sanctuary-bird", "eager-squirrel", "seagull-swoop",
+			"duck-on-the-rocks", "duckshake", "merton-birds-1", "merton-birds-2", "merton-birds-3",
+			"meadows-cow", "tesco-bird-1", "tesco-bird-2", "snowy-seagull-landing",
+			"snowy-seagull-sitting"
+        ]
+    }],
+    ["alpine-terrace-cat", {
+        "name": "Alpine Terrace Cat",
+        "display": "from_first",
+        "description": "Pictures of that one cat I met on Alpine Terrace\n\nAlpine terrace is a short, steep street that ends with a dead-end circle & public stairs down\ntowards the road below. As I walked up towards the open space at the end, there was a cat sitting in\nthe middle of the circle.\n\nI got to the middle & it started walking over towards me - it seemed curious; ok with rubbing up\nagainst me, but not really in it for pets. I made my way over to the other side of the circle, and\nthe cat seemed to be ok with just sitting in the middle still; it even seemed to enjoy posing as I\ngot out my camera & took a few quick pictures.\n\nEventually, as the sunset meant the light was fading from the sky, this strange cat came over near\nme and started rolling around in some of the plants. By this time though, there wasn't much light to\nwork with, so after many attempted pictures of the cat sitting *just a couple feet from me*, I\nsettled for just two photos from the bunch.\n\nThis is a subset of the [\"Neighborhood Wander — Jul. 7 2021\"] album.\n\n[\"Neighborhood Wander — Jul. 7 2021\"]: /photos/album/wander-2021-07-06\n",
+        "cover_img": "inattentive-monarch",
+        "photos": [
+            "death-stare", "inattentive-monarch", "feline-focus", "eyes-in-the-dark"
+        ]
+    }],
+    ["dads-bday-2021", {
+        "name": "Dad's birthday bike ride, 2021",
+        "kind": { "day": "2021-08-07" },
+        "display": "from_first",
+        "description": "Each year, my dad likes to do a get-together & bike ride for his birthday -- typically pushing\nhimself just a bit. Some of his friends have affectionately referred to it as the \"yearly vitality check\".\n\nThis year, we biked up the dirt paths to the top of Mt Tamalpais, hung around at the top for a\nwhile, and then biked back down on the paved roads. I thankfully took my camera, so I was able to\nget a few cool shots while we were going - of nature, scenery, and the other people with us.\n",
+        "cover_img": "westpoint-bench-1",
+        "photos": [
+            "westpoint-bench-1", "westpoint-bench-2", "mt-tam-vulture-1", "mt-tam-vulture-2",
+            "kz-above-the-clouds", "pantoll-rd-overlook"
+        ]
+    }],
+    ["wander-2021-07-06", {
+        "name": "Neighborhood Wander — Jul. 7 2021",
+        "kind": { "day": "2021-07-06" },
+        "display": "from_first",
+        "description": "One of my first \"proper\" adventures to go take some photos - just a long wander around the\nneighborhood.\n\nI was on the phone with my good friend Jack (who is also into photography) for most of the walk,\noccasionally interrupting \"wait sorry, gimme a sec - I gotta get a picture of this!\"\n\nThe neighborhood is in the Oakland hills (or: at least one set of them), and I spent some time over\nat Lake Temescal before meandering back in roughly the way I came.\n\n---\n\nBefore I _quite_ got home, I decided to go up a side street for a little bit, where I was greeted by\nan unexpectedly friendly cat! It didn't seem particularly keen on pets, but was all too happy to be\na model. My favorite of the bunch is [\"Inattentive Monarch\"]\n\n[\"Inattentive Monarch\"]: /photos/view/inattentive-monarch?album=wander-2021-07-06\n",
+        "cover_img": "temescal-poppies-2",
+        "photos": [
+            "downtown-oaktown", "golden-hour-grass", "temescal-poppies-1", "temescal-poppies-2",
+            "contra-costa-rose", "buena-vista-rose-1", "buena-vista-rose-2", "death-stare",
+            "inattentive-monarch", "feline-focus", "eyes-in-the-dark"
+        ]
+    }]
+]

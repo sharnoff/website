@@ -1,0 +1,17 @@
+{# box containing the small photo, linking to a page for it #}
+<div class="photo-smallbox">
+    {% set href = "/photos/view/" ~ photo.file_name %}
+    {% if current_album %}{% set href = href ~ "?album=" ~ current_album %} {% endif %}
+    <a href="{{ href | escape | safe }}">
+        <img
+            src="{{ "/photos/img-file/"~ photo.file_name ~ "?size=small&rev=" ~ photo.smaller.hash }}"
+            {% if photo.alt_text %}alt="{{photo.alt_text|escape|safe}}"{% endif %}
+        >
+        <div class="photo-overlay">
+            <div class="photo-caption">
+                <div class="photo-date">{{ photo.date }}</div>
+                <div class="photo-title">{{ photo.title }}</div>
+            </div>
+        </div>
+    </a>
+</div>

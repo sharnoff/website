@@ -1,0 +1,57 @@
+{% extends "base" %}
+{# Global site root - context should have a list of posts #}
+
+{% block head %}
+    {{ super() }}
+    <!--
+    {% include "photos/script-header" %}
+    <link rel="stylesheet" href="/style/blog.css">
+    <link rel="stylesheet" href="/style/photos.css">
+    -->
+{% endblock head %}
+
+{% block title %}sharnoff.io{% endblock title %}
+{% block body_class %}"center-body site-root"{% endblock body_class %}
+
+{% block content %}
+
+    <div class="site-intro">
+        <p>Hi! Welcome to my site.</p>
+    </div>
+
+    <p>Nothing's here <em>quite</em> yet; may I interest you in <a href="/photos">some photos</a>?</p>
+
+    <!--
+    <div class="root-split-view">
+        <div class="root-posts-list">
+            <div class="title">Recent blog posts:</div>
+
+            {% set highlight_first = true %}
+            {% set list_end = 3 %}
+            {% include "blog/post-list" %}
+
+            {# easier to have one-off styling here #}
+            <div class="view-all-container">
+                <div class="view-all-button">
+                    <a class="softlink" href="/blog">View all posts</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="root-photos">
+            <div class="title">Some of my photos:</div>
+
+            {% set current_album = "all" %}
+            {% include "photos/flex-grid" %}
+
+            <div class="view-all-container">
+                <div class="view-all-button">
+                    <a class="softlink" href="/photos">More photos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+
+
+{% endblock content %}

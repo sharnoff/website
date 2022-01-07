@@ -1,0 +1,158 @@
+/* General styling + utility classes */
+
+:root {
+    --text-color: #000000;
+    --text-color-soft: #6C7075;
+    --text-color-inverse: #CACCCE;
+    --text-color-inverse-soft: #A2A6A9;
+    --em-color: #7C4899;
+    --em-color-soft: #614973;
+    --em-color-heavy: #5e297a;
+    --accent-color: #2CA58D;
+    --accent-color-soft: #39776D;
+    --bg-color: #FFFFFF;
+
+    --code-font: 'JetBrains Mono';
+    --body-font: 'Lato';
+    --title-font: 'Lato';
+
+    --site-root-max-width: 100ch;
+}
+
+/* Links that only display the underline on hover */
+.quietlink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.quietlink a:hover {
+    text-decoration: underline;
+    color: inherit;
+}
+
+/* Links that always display underline, but have consistent styling */
+.softlink {
+    font-style: normal;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    color: inherit;
+}
+
+/* paragrah margins that chrome uses by default */
+p { margin-block-start: 1em; margin-block-end: 1em; }
+
+/* All last paragraphs shouldn't have trailing margins */
+p:last-child { margin-block-end: 0 }
+
+/******* SITE LAYOUT & STYLE *******/
+
+body {
+    font-family: var(--body-font);
+    line-height: 1.25;
+    /* Don't allow the page to end early */
+    min-height: 100vh;
+    /* chrome gives a margin of 8px by default; this messes up our min-height */
+    margin: 0;
+    /* Allow the footer to go at the bottom */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Control font size (+ everything else) by viewport width */
+body { font-size: 20px }
+
+#site-header {
+    /* With centering from 'body', expand to fill the available space */
+    width: 100%;
+    max-width: calc(var(--site-root-max-width) * 1.15);
+    /* font-size: 1.25em; */
+    margin-bottom: 1.5rem;
+}
+
+#site-header>nav {
+    display: flex;
+    margin-top: 1rem;
+}
+
+#site-header .header-link {
+    margin-left: 1ch;
+    margin-right: 1ch;
+}
+
+#site-footer {
+    font-size: 0.75em;
+    margin-top: auto;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/******* GENERAL STYLE *******/
+
+.title, .post-title {
+    font-family: var(--title-font), serif;
+    color: var(--em-color);
+}
+
+/* makes sure that we can do horizontal scrolling to read blocks of code if they're too wide */
+pre { overflow: auto; }
+
+code {
+    font-family: var(--code-font);
+    font-size: 80%;
+    margin: 0 0.1em;
+}
+
+/******* MAIN PAGE (+ UTILITY CLASSES) *******/
+
+.center-body {
+    /* Centering everything in the page */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* And make sure there's a little bit of padding on either side */
+    padding: 0 2ch 0;
+}
+
+body.center-body #site-header :first-child { margin-left: 0 }
+body.center-body #site-header :last-child { margin-right: 0 }
+
+body.center-body>* {
+    width: 100%;
+}
+
+body.site-root>* { max-width: var(--site-root-max-width); }
+
+/* Actual layout; on mobile, display them one after another. On desktop, display side-by-side. */
+@media {
+    .root-posts-list { width: 100%; margin-bottom: 4ch; }
+    .root-photos { width: 100%; }
+}
+@media (min-width: 750px) {
+    .root-split-view { display: flex; }
+    .root-posts-list { width: 57%; margin-right: 1.5ch; }
+    .root-photos { width: 43%; margin-left: 1.5ch; }
+}
+
+.root-split-view .title {
+    color: var(--em-color-heavy);
+}
+
+/* add a little margin so it matches the post stubs */
+
+@media {
+    .root-photos>.flex-grid { margin-top: 1.5ch }
+}
+
+@media (max-width: 480px) {
+    .root-photos>.flex-grid { margin-top: 4ch }
+}
+
+.view-all-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2ch;
+}
+
+.view-all-button>a {
+    text-decoration-thickness: 2px;
+}
