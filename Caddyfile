@@ -1,3 +1,4 @@
-sharnoff.io
-
-reverse_proxy localhost:8000
+sharnoff.io {
+	# respond "site currently under maintenance, sorry!"
+	reverse_proxy localhost:8000
+}

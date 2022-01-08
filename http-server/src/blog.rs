@@ -4,6 +4,7 @@
 //! supplied so that the site root can display some recent posts.
 
 use anyhow::{anyhow, bail, Context, Result};
+use arc_swap::ArcSwap;
 use chrono::{offset::FixedOffset, DateTime};
 use glob::glob;
 use lazy_static::lazy_static;
@@ -15,7 +16,7 @@ use std::collections::{BTreeMap, HashMap};
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::exit;
-use std::sync::{Arc, RwLock};
+use std::sync::Arc;
 
 use crate::util::{format_datetime, is_uri_idempotent, markdown_to_html, FormatLevel};
 
@@ -42,13 +43,13 @@ const MIN_SNEAK_PEEK_AMOUNT: usize = 100;
 
 lazy_static! {
     /// Global state of the blog information
-    static ref STATE: RwLock<BlogState> = RwLock::new(match BlogState::new() {
-        Ok(s) => s,
+    static ref STATE: ArcSwap<BlogState> = match BlogState::new() {
+        Ok(s) => ArcSwap::from(Arc::new(s)),
         Err(e) => {
             eprintln!("failed to create `BlogState`: {:#}", e);
             exit(1)
         }
-    });
+    };
 }
 
 /// Collects all of the necessary information about the state of the blog, causing any failures to
@@ -59,9 +60,20 @@ pub fn initialize() {
     lazy_static::initialize(&STATE);
 }
 
+/// Re-makes the `BlogState` to incorporate any recent file changes
+pub fn update() -> Result<()> {
+    // Blog stuff is relatively cheap; we can afford to just recalculate the entire state whenever
+    // there's a change.
+    let new_state = BlogState::new()?;
+
+    STATE.store(Arc::new(new_state));
+
+    Ok(())
+}
+
 #[get("/")]
 pub fn index() -> Template {
-    let ctx = STATE.read().unwrap().index_context();
+    let ctx = STATE.load().index_context();
     Template::render(INDEX_TEMPLATE_NAME, ctx)
 }
 
@@ -69,18 +81,18 @@ pub fn index() -> Template {
 pub fn post(post_name: Cow<str>) -> Option<Template> {
     assert!(!post_name.is_empty());
 
-    let ctx = STATE.read().unwrap().post_context(&*post_name)?;
+    let ctx = STATE.load().post_context(&*post_name)?;
     Some(Template::render(POST_TEMPLATE_NAME, ctx))
 }
 
 #[get("/tag/<tag>")]
 pub fn tag(tag: String) -> Option<Template> {
-    let ctx = STATE.read().unwrap().tag_context(&tag)?;
+    let ctx = STATE.load().tag_context(&tag)?;
     Some(Template::render(TAGS_TEMPLATE_NAME, ctx))
 }
 
 pub fn recent_posts_context() -> Vec<Arc<PostContext>> {
-    STATE.read().unwrap().recent_posts_context()
+    STATE.load().recent_posts_context()
 }
 
 impl BlogState {

@@ -4,6 +4,7 @@
 //! supplied so that the site root can display some recent photos.
 
 use anyhow::{anyhow, bail, Context, Result};
+use arc_swap::ArcSwap;
 use chrono::{Date, DateTime, FixedOffset, TimeZone};
 use glob::glob;
 use lazy_static::lazy_static;
@@ -21,7 +22,7 @@ use std::io::{self, Cursor, Write};
 use std::ops::Range;
 use std::path::{Path, PathBuf};
 use std::process::exit;
-use std::sync::{mpsc, Arc, Mutex, RwLock};
+use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
 
 use crate::util::{
@@ -117,7 +118,7 @@ const GLOBAL_MAP_VIEW: MapView = MapView {
 ///
 /// All of the fields are renamed during (de-)serialization so that they match the naming of the
 /// Javascript constructor.
-#[derive(Debug, Clone, Deserialize, Serialize)]
+#[derive(Debug, Clone, PartialEq, Deserialize, Serialize)]
 pub struct FlexGridSettings {
     /// Required minimum number of columns
     #[serde(rename = "minColumns")]
@@ -159,7 +160,7 @@ pub struct FlexGridSettings {
 impl Default for FlexGridSettings {
     fn default() -> Self {
         // Cloning is cheap; this type *would* implement `Copy`, but `Range` doesn't.
-        DEFAULT_FLEXGRID_SETTINGS.clone()
+        (**DEFAULT_FLEXGRID_SETTINGS.load()).clone()
     }
 }
 
@@ -175,6 +176,14 @@ impl FlexGridSettings {
 
         serde_json::from_str(&file_content)
             .with_context(|| format!("failed to parse `FlexGridSettings` in file {:?}", path))
+    }
+
+    fn update_from_fs(&self) -> Result<Option<Self>> {
+        let old = FlexGridSettings::default();
+        let new = Self::load_default()?;
+
+        // Only update if it's different from before
+        Ok((new != old).then(|| new))
     }
 }
 
@@ -224,16 +233,20 @@ enum AlbumDisplayOrder {
 }
 
 lazy_static! {
-    static ref STATE: RwLock<PhotosState> = RwLock::new(match PhotosState::new() {
-        Ok(s) => s,
+    /// Full state of all of the photos
+    static ref STATE: ArcSwap<PhotosState> = match PhotosState::new() {
+        Ok(s) => ArcSwap::new(Arc::new(s)),
         Err(e) => {
             eprintln!("failed to create `PhotosState`: {:#}", e);
             exit(1)
         }
-    });
-    static ref DEFAULT_FLEXGRID_SETTINGS: FlexGridSettings = match FlexGridSettings::load_default()
+    };
+
+    /// The default settings provided to a `FlexGrid`, loaded from
+    /// 'content/photos/default-flex-grid-config.json'
+    static ref DEFAULT_FLEXGRID_SETTINGS: ArcSwap<FlexGridSettings> = match FlexGridSettings::load_default()
     {
-        Ok(s) => s,
+        Ok(s) => ArcSwap::from(Arc::new(s)),
         Err(e) => {
             eprintln!("failed to load default `FlexGridSettings`: {:#}", e);
             exit(1)
@@ -250,15 +263,47 @@ pub fn initialize() {
     lazy_static::initialize(&STATE);
 }
 
+/// Re-makes the `PhotosState` and/or default `FlexGridSettings` to incorporate any recent file
+/// changes
+pub fn update() -> Result<()> {
+    let new_state_opt = STATE
+        .load()
+        .update_from_fs()
+        .context("could not update PhotosState")?;
+
+    if let Some(new_state) = new_state_opt {
+        STATE.store(Arc::new(new_state));
+    }
+
+    let new_default_flexgrid_opt = DEFAULT_FLEXGRID_SETTINGS
+        .load()
+        .update_from_fs()
+        .context("could not update FlexGrid settings")?;
+
+    if let Some(new_default) = new_default_flexgrid_opt {
+        DEFAULT_FLEXGRID_SETTINGS.store(Arc::new(new_default));
+    }
+
+    Ok(())
+}
+
+/// Helper function to run a given function after acquiring the current [`PhotosState`]
+fn with_state<F, T>(func: F) -> T
+where
+    F: FnOnce(&PhotosState) -> T,
+{
+    func(&*STATE.load())
+}
+
 #[get("/")]
 pub fn index() -> Template {
-    let ctx = STATE.read().unwrap().index_context();
+    let ctx = with_state(|s| s.index_context());
     Template::render(INDEX_TEMPLATE_NAME, ctx)
 }
 
 #[get("/albums")]
 pub fn albums() -> Template {
-    let ctx = STATE.read().unwrap().albums_context();
+    let ctx = with_state(|s| s.albums_context());
     Template::render(ALBUMS_TEMPLATE_NAME, ctx)
 }
 
@@ -267,7 +312,7 @@ pub fn img_page(
     name: Cow<str>,
     album: Option<String>,
 ) -> Result<MaybeRedirect<Template>, http::Status> {
-    let ctx = match STATE.read().unwrap().img_page_context(&name, album)? {
+    let ctx = match with_state(|s| s.img_page_context(&name, album))? {
         MaybeRedirect::Dont(c) => c,
         MaybeRedirect::Redirect {
             new_url,
@@ -288,20 +333,19 @@ pub fn img_page(
 
 #[get("/album/<name>")]
 pub fn album_page(name: Cow<str>) -> Option<Template> {
-    let ctx = STATE.read().unwrap().album_context(&name)?;
+    let ctx = with_state(|s| s.album_context(&name))?;
     Some(Template::render(ALBUM_TEMPLATE_NAME, ctx))
 }
 
 #[get("/map")]
 pub fn map() -> Template {
-    let ctx = STATE.read().unwrap().map_context();
+    let ctx = with_state(|s| s.map_context());
     Template::render(MAP_TEMPLATE_NAME, ctx)
 }
 
 pub fn recent_photos_context() -> Vec<Arc<PhotoInfo>> {
     STATE
-        .read()
-        .unwrap()
+        .load()
         .albums
         .get(PREVIEW_ALBUM)
         .map(|a| a.photos.iter().cloned().take(NUM_PREVIEW_PHOTOS).collect())
@@ -334,7 +378,8 @@ pub fn img(
         _ => return Err(http::Status::BadRequest),
     };
 
-    let state = STATE.read().unwrap();
+    // Store a state guard separately to get around borrowing issues
+    let state = STATE.load();
 
     let img = state
         .images
@@ -613,6 +658,12 @@ impl PhotosState {
             images,
             images_by_time,
         })
+    }
+
+    /// Updates the `PhotosState`, checking returning `None` if there haven't been any changes
+    fn update_from_fs(&self) -> Result<Option<Self>> {
+        // TODO: Currently this is very expensive and will take a long while. We can do better.
+        PhotosState::new().map(Some)
     }
 
     /// Reads and parses the album info file
@@ -1427,7 +1478,7 @@ impl PhotosState {
     fn index_context(&self) -> IndexContext {
         IndexContext {
             favorites: self.albums[FAVORITES_ALBUM_NAME].clone(),
-            flex_grid_settings: DEFAULT_FLEXGRID_SETTINGS.clone(),
+            flex_grid_settings: FlexGridSettings::default(),
         }
     }
 
