@@ -3,6 +3,7 @@
 {% block header %}
     {{ super() }}
     <link rel="stylesheet" href="/style/photos.css">
+	<link rel="stylesheet" href="/style/prism.css">
 {% endblock header %}
 
 {% block footer %}

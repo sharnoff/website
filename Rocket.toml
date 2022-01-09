@@ -1,5 +1,8 @@
 [global]
 template_dir = "templates/"
 
+[development]
+address = "0.0.0.0"
+
 [production]
 address = "localhost"

@@ -455,6 +455,7 @@ dependencies = [
  "libc",
  "pulldown-cmark",
  "rayon",
+ "regex",
  "rocket",
  "rocket_contrib",
  "serde",
