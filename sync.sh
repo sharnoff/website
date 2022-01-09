@@ -100,12 +100,12 @@ if [[ ! -z "$updates" ]]; then
 fi
 
 if grep -q "^${INDENT_STR}Caddyfile" <(echo "$cmd_output"); then
-    echo -n ':: Caddyfile has been updated. Copy over? [y/n] '
+    echo -n ':: Caddyfile has been updated. Reload? [y/n] '
     while true; do
         read resp
         case "$resp" in
             'y')
-                echo ':: Sending Caddyfile...'
+                echo ':: Reloading caddy...'
                 echo ":: > ssh max@sharnoff.io 'caddy reload --config=website/Caddyfile'"
 
                 ssh max@sharnoff.io 'caddy reload --config=website/Caddyfile' | indent "$INDENT_STR"
