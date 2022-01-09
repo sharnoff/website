@@ -23,20 +23,30 @@ use crate::util::{format_datetime, is_uri_idempotent, markdown_to_html, FormatLe
 /// Helper macro so that mounting the routes will work correctly at the crate root
 macro_rules! blog_routes {
     () => {{
-        rocket::routes![crate::blog::index, crate::blog::post, crate::blog::tag]
+        rocket::routes![
+            crate::blog::index,
+            crate::blog::planned_posts,
+            crate::blog::post,
+            crate::blog::tag,
+        ]
     }};
 }
 
 /// Name of the template used for the blogs overview (at "/blog")
 static INDEX_TEMPLATE_NAME: &str = "blog/index";
+/// Name of the template used for displaying upcoming posts
+static PLANNED_POSTS_TEMPLATE_NAME: &str = "blog/planned";
 /// Name of the template used for individual blog posts (at "/blog/<post_name>")
 static POST_TEMPLATE_NAME: &str = "blog/post";
 /// Name of the template used for displaying the values in a tag (at "/blog/tag/<tag_name>")
 static TAGS_TEMPLATE_NAME: &str = "blog/tag";
+
 /// Directory that the blog posts are stored in, relative to the source root
 static BLOG_POSTS_DIRECTORY: &str = "content/blog-posts";
-/// Glog to match the markdown document responsible for each post
+/// Glob to match the markdown document responsible for each post
 static BLOG_GLOB: &str = "*.md";
+/// The file in `BLOG_POSTS_DIRECTORY` that houses information about planned posts
+static PLANNED_POSTS_META_FILE: &str = "planned-posts.json";
 
 /// Minimum number of markdown bytes to include in a post sneak peek
 const MIN_SNEAK_PEEK_AMOUNT: usize = 100;
@@ -77,6 +87,12 @@ pub fn index() -> Template {
     Template::render(INDEX_TEMPLATE_NAME, ctx)
 }
 
+#[get("/planned")]
+pub fn planned_posts() -> Template {
+    let ctx = STATE.load().planned_posts_context();
+    Template::render(PLANNED_POSTS_TEMPLATE_NAME, ctx)
+}
+
 #[get("/<post_name>")]
 pub fn post(post_name: Cow<str>) -> Option<Template> {
     assert!(!post_name.is_empty());
@@ -98,6 +114,10 @@ pub fn recent_posts_context() -> Vec<Arc<PostContext>> {
 impl BlogState {
     /// Creates the `BlogState`, returning any error if applicable
     fn new() -> Result<Self> {
+        let planned_posts = PlannedPostsInfo::read()
+            .map(Arc::new)
+            .context("couldn't read planned posts")?;
+
         let mut files = HashMap::new();
 
         let mut by_time = BTreeMap::new();
@@ -143,7 +163,31 @@ impl BlogState {
             files,
             tags,
             by_time,
+            planned_posts,
         })
+    }
+}
+
+impl PlannedPostsInfo {
+    /// Reads the information on planned posts from the JSON file in the posts directory
+    fn read() -> Result<Self> {
+        let file_path = Path::new(BLOG_POSTS_DIRECTORY).join(PLANNED_POSTS_META_FILE);
+
+        let file_content = fs::read_to_string(&file_path)
+            .with_context(|| format!("could not file {:?} to string", file_path))?;
+
+        serde_json::from_str(&file_content)
+            .with_context(|| format!("failed to parse `Vec<PlannedPost>` in file {:?}", file_path))
+            .map(|mut planned: Self| {
+                // Most of the fields are meant to be markdown; we need to process them:
+                planned.intro = markdown_to_html(&planned.intro);
+
+                for p in planned.posts.iter_mut() {
+                    p.description = markdown_to_html(&p.description);
+                }
+
+                planned
+            })
     }
 }
 
@@ -228,6 +272,23 @@ struct BlogState {
     tags: HashMap<String, BTreeMap<i64, Arc<PostContext>>>,
     /// Entry names, sorted by their publishing timestamp
     by_time: BTreeMap<i64, Arc<PostContext>>,
+
+    /// Information about planned posts
+    planned_posts: Arc<PlannedPostsInfo>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct PlannedPostsInfo {
+    /// HTML string giving a little bit of an introduction to the planned posts page
+    intro: String,
+    /// Each of the planned posts
+    posts: Vec<PlannedPost>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+struct PlannedPost {
+    title: String,
+    description: String,
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -278,6 +339,10 @@ impl BlogState {
             tags: self.tags.keys().cloned().collect(),
             posts: self.by_time.iter().map(|(_, i)| i).cloned().rev().collect(),
         }
+    }
+
+    fn planned_posts_context(&self) -> Arc<PlannedPostsInfo> {
+        self.planned_posts.clone()
     }
 
     fn post_context(&self, name: impl AsRef<Path>) -> Option<Arc<PostContext>> {
