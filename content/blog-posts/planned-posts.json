@@ -1,0 +1,21 @@
+{
+    "intro": "There's a number of blog posts I've _thought_ about writing, but haven't gotten around to yet ---\nthings like:\n* Projects I'd like to start\n* Ideas for features in various environments (programs, languages, etc.)\n* Discussions of some of my experiences (more\n\nSo I've put them here for now -- so if you're reading this and there's something that particularly\nspeaks to you, feel free to let me know! You can email me at `<firstname><lastname>@gmail.com`.\n",
+    "posts": [
+        {
+            "title": "Why can't we have nice things?",
+            "description": "A mini-series about certain types of software with problems that people tend to accept as a fact of\nlife -- editors, programming languages, typesetting systems, and more.\n\nThis naturally leads into a few other posts that I've thought about writing.\n"
+        },
+        {
+            "title": "On making an editor",
+            "description": "Laying out some of the problems I see with existing code editors, and why I have the gall to think I can do better"
+        },
+        {
+            "title": "Put your ideas out there!",
+            "description": "I've had a number of ideas for improving existing systems that I never really talked about; other\npeople wrote about them first, with widespread support in their respective communities.\n\nThe world can benefit from new ideas.\n"
+        },
+        {
+            "title": "Ideas for a new kind of Regex engine",
+            "description": "One of the perks of writing an editor designed to support the extremes is that _nearly every_\nexisting system will eventually fail before you want it to. Regex engines are no exception.\n\nThis would be an outline of some of the ways that the interface to such a Regex engine must be\ndifferent -- and how some of the performance penalty can be recovered.\n\nThis Regex engine *will* eventually exist, it's just going to take a while.\n"
+        }
+    ]
+}

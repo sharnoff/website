@@ -1,0 +1,16 @@
+{% extends "base" %}
+
+{% block header %}
+    {{ super() }}
+    <link rel="stylesheet" href="/style/blog.css">
+	<link rel="stylesheet" href="/style/prism.css">
+{% endblock header %}
+
+{% block footer %}
+    <p>
+    All blog posts are licensed under <a class="softlink" href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> unless explicitly stated otherwise.
+    <br>
+    Please include attribution in any quote or reference to my work.
+    </p>
+    {{ super() }}
+{% endblock footer %}

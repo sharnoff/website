@@ -1,0 +1,14 @@
+{# Embedded list of blog posts #}
+<div class="blog-list">
+    {% if not list_end %}
+        {% set list_end = posts | length %}
+    {% endif %}
+
+    {% for post in posts | slice(end=list_end) %}
+        {% if loop.first and highlight_first %}
+            {% include "blog/post-stub-big" %}
+        {% else %}
+            {% include "blog/post-stub" %}
+        {% endif %}
+    {% endfor %}
+</div>

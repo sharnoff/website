@@ -1,0 +1,13 @@
+{# Small stub & link to a post #}
+<div class="post-stub">
+    <h1 class="post-title">
+        <a class="quietlink" href={{ "/blog/" ~ post.meta.path }}>{{ post.meta.title }}</a>
+    </h1>
+
+    {% set meta = post.meta %}
+    {% include "blog/post-meta" %}
+
+    <div class="post-description">
+        {{ post.meta.description | safe }}
+    </div>
+</div>

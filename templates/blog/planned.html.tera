@@ -1,0 +1,20 @@
+{% extends "blog/base" %}
+
+{% block title %}Planned posts{% endblock title %}
+{% block body_class %}"center-body blog blog-planned"{% endblock body_class %}
+
+{% block content %}
+    <div class="title">Planned posts</div>
+    
+    <div class="planned-posts-intro">{{ intro | safe }}</div>
+    
+    {% for post in posts %}
+        <div class="planned-post-box">
+            <div class="planned-post-title">{{ post.title }}</div>
+            {% if post.description %}
+                <div class="planned-post-description">{{ post.description | safe }}</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+{% endblock content %}

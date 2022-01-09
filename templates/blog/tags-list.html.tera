@@ -1,0 +1,7 @@
+{# in-line list of tags for a post #}
+<span class="post-tags-inline">
+    {% for t in tags %}
+        {% if not loop.first %} · {% endif %}
+        <a class="softlink" href={{ "/blog/tag/" ~ t }}>{{ t }}</a>
+    {% endfor %}
+</span>

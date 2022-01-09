@@ -1,0 +1,112 @@
+:root {
+    --blog-max-width: 70ch;
+}
+
+body.blog>* { max-width: var(--blog-max-width); }
+
+body.blog>#site-header :first-child { margin-left: 0 }
+body.blog>#site-header :last-child { margin-right: 0 }
+
+body.blog>#content { margin-bottom: 2em }
+
+.post-stub, .post-stub-big {
+    padding: 1ch 2ch 1ch;
+    margin-top: 1.5ch;
+
+    border-style: solid;
+    border-color: var(--em-color-soft);
+    border-radius: 0.5em;
+    border-width: 0.15em;
+}
+
+.post-stub { border-width: 0 0 0 0.15em; }
+
+.post-title {
+    /* h1 normally has spacing below it. For blog posts, we don't want that */
+    margin-block-end: 0; margin-block-start: 0;
+    margin-left: -0.1em;
+}
+
+h1.post-title { font-size: 2em } /* This is what chrome gives by default */
+.post-stub-big>.post-title { font-size: 1.75em }
+.post-stub>.post-title { font-size: 1.5em }
+
+.post-meta {
+    color: var(--text-color-soft);
+    margin-bottom: 1.5em;
+}
+
+.post-sneakpeek {
+    padding-left: 4ch;
+    font-size: 80%;
+}
+
+.post-container p {
+    line-height: 1.6em;
+}
+
+.blog-intro { padding: 2ch 0; }
+
+/* include some page divisions */
+.all-tags-list {
+    border-style: solid;
+    border-color: var(--em-color-soft);
+    border-width: 0.1em 0
+}
+
+.all-tags-list { padding: 2ch 0; text-align: center }
+.tags-list-tag { color: var(--text-color-soft); }
+
+.all-posts-list {
+    padding-top: 2ch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3ch;
+}
+
+.footnote-definition { margin-top: 1em }
+:not(.footnote-definition) + .footnote-definition {
+    margin-top: 3em;
+    padding-top: .5em;
+    border-top: 1.5px solid var(--text-color-soft);
+}
+
+/* TODO: this should only be true for the first paragraph */
+.footnote-definition p {
+    display: inline;
+    margin-left: 0.5ch;
+}
+
+h2 { color: var(--em-color) }
+h3, h4 { color: var(--em-color-soft) }
+
+td, th { padding-right: 1ch }
+
+.blog img  {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+/*** Planned posts ***/
+.blog-planned .title {
+    font-size: 170%;
+    margin-bottom: .5em;
+}
+
+.planned-posts-intro { margin-bottom: 2em }
+
+:not(.planned-post-box) + .planned-post-box {
+    padding-top: 2em;
+    border-top: 1.5px solid var(--text-color-soft);
+}
+
+.planned-post-title {
+    color: var(--em-color);
+    margin-bottom: 0.5em;
+}
+
+.planned-post-box {
+    margin-bottom: 2em;
+}

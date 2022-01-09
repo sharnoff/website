@@ -1,0 +1,12 @@
+<div class="post-meta">
+    <span class="post-time">{{ meta.first_published | safe }}</span>
+    {% if meta.tags | length != 0 %}
+        —
+        <span class="post-tags-inline">
+            {% for t in meta.tags %}
+                {% if not loop.first %} · {% endif %}
+                <a class="softlink" href={{ "/blog/tag/" ~ t }}>{{ t }}</a>
+            {% endfor %}
+        </span>
+    {% endif %}
+</div>
