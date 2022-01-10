@@ -2,6 +2,7 @@
     --blog-max-width: 70ch;
 }
 
+/*** General utility styling shared in a number of places ***/
 body.blog>* { max-width: var(--blog-max-width); }
 
 body.blog>#site-header :first-child { margin-left: 0 }
@@ -31,28 +32,19 @@ h1.post-title { font-size: 2em } /* This is what chrome gives by default */
 .post-stub-big>.post-title { font-size: 1.75em }
 .post-stub>.post-title { font-size: 1.5em }
 
-.post-meta {
-    color: var(--text-color-soft);
-    margin-bottom: 1.5em;
-}
+.post-meta { color: var(--text-color-soft); }
+.post-stub .post-meta { margin-bottom: 1.5em; }
+.post-stub-big .post-meta { margin-bottom: .5em; }
 
-.post-sneakpeek {
-    padding-left: 4ch;
-    font-size: 80%;
-}
+.post-sneakpeek { font-size: 80%; }
 
-.post-container p {
-    line-height: 1.6em;
-}
+.stub-read-more { text-align: right; }
 
+/*** Blog index page ***/
 .blog-intro { padding: 2ch 0; }
 
-/* include some page divisions */
-.all-tags-list {
-    border-style: solid;
-    border-color: var(--em-color-soft);
-    border-width: 0.1em 0
-}
+/*** Individual posts ***/
+.post-container p { line-height: 1.6em; }
 
 .all-tags-list { padding: 2ch 0; text-align: center }
 .tags-list-tag { color: var(--text-color-soft); }

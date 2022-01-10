@@ -25,7 +25,7 @@
     color: inherit;
 }
 
-.quietlink a:hover {
+a.quietlink:hover {
     text-decoration: underline;
     color: inherit;
 }

@@ -15,4 +15,8 @@ first paragraph or two of text.
     <div class="post-sneakpeek">
         {{ post.meta.sneak_peek | safe }}
     </div>
+
+    <div class="stub-read-more">
+        <a class="quietlink" href={{ "/blog/" ~ post.meta.path }}>Read more</a>
+    </div>
 </div>

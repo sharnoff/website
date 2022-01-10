@@ -11,14 +11,16 @@
 		<p>Stay tuned!</p>
 	</div>
 
-    <div class="all-tags-list">
-        <div class="title">Tags:</div>
+    {% if tags | length != 0 %}
+        <div class="all-tags-list">
+            <div class="title">Tags:</div>
 
-        {% for t in tags %}
-            {% if not loop.first %} · {% endif %}
-            <a class="softlink tags-list-tag" href={{ "/blog/tag/" ~ t }}>{{ t }}</a>
-        {% endfor %}
-    </div>
+            {% for t in tags %}
+                {% if not loop.first %} · {% endif %}
+                <a class="softlink tags-list-tag" href={{ "/blog/tag/" ~ t }}>{{ t }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <div class="all-posts-list">
         <div class="title">Recent posts:</div>

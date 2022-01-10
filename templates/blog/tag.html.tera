@@ -1,4 +1,10 @@
 {% extends "base" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/style/blog.css">
+	<link rel="stylesheet" href="/style/prism.css">
+{% endblock head %}
+
 {% block title %}Posts tagged: {{ tag }}{% endblock title %}
 {% block body_class %}"center-body blog"{% endblock body_class %}
 
