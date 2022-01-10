@@ -7,9 +7,9 @@ tags = []
 
 Hey there! Welcome.
 
-Who am I? My name is Max, but anything beyond that isn't too important -- identity is a funny thing.
-At time of writing (Jan 2022), I'm an undergrad computer scientist at the University of Oxford,
-originally from California.
+Who am I? My name is Max, but anything beyond that isn't too important -- identity isn't quite as
+static as people like to think. At time of writing (Jan 2022), I'm an undergrad computer scientist
+at the University of Oxford, originally from California.
 
 In any case, this blog exists because enough people said I should -- and things like "that's a cool
 idea! you should write a blog post about it!"
