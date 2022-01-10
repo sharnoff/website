@@ -146,6 +146,10 @@ impl BlogState {
                 .with_context(|| format!("could not parse file {:?}", file_name))?
                 .into();
 
+            if info.meta.is_hidden {
+                continue;
+            }
+
             // Add info to the blog state
             let time = info.meta.published_unix_time;
 
@@ -159,9 +163,22 @@ impl BlogState {
             files.insert(file_name, info);
         }
 
+        let mut tags_sorted = tags
+            .iter()
+            .map(|(name, set)| (name.clone(), set.clone()))
+            .collect::<Vec<_>>();
+
+        tags_sorted.sort_by(|(x_name, x_set), (y_name, y_set)| {
+            x_set
+                .len()
+                .cmp(&y_set.len())
+                .then_with(|| x_name.cmp(&y_name))
+        });
+
         Ok(BlogState {
             files,
             tags,
+            tags_sorted,
             by_time,
             planned_posts,
         })
@@ -210,6 +227,7 @@ impl PostContext {
             first_published: ParsedDateTime,
             updated: Vec<ParsedDateTime>,
             tags: Vec<String>,
+            is_hidden: bool,
         }
 
         #[derive(Deserialize)]
@@ -253,6 +271,7 @@ impl PostContext {
                 .map(|d| format_datetime(d.0, FormatLevel::Date))
                 .collect(),
             tags: parsed.tags,
+            is_hidden: parsed.is_hidden,
             published_unix_time: parsed.first_published.0.timestamp(),
         };
 
@@ -270,6 +289,9 @@ struct BlogState {
     files: HashMap<PathBuf, Arc<PostContext>>,
     /// All of the tags and the posts
     tags: HashMap<String, BTreeMap<i64, Arc<PostContext>>>,
+    /// A version of `tags`, but sorted by: number of posts, then alphabetically
+    tags_sorted: Vec<(String, BTreeMap<i64, Arc<PostContext>>)>,
+
     /// Entry names, sorted by their publishing timestamp
     by_time: BTreeMap<i64, Arc<PostContext>>,
 
@@ -316,6 +338,8 @@ struct PostMeta {
     updated: Vec<String>,
     /// Tags associated with the post
     tags: Vec<String>,
+    /// True if this post should be hidden (i.e. completely skipped, for now)
+    is_hidden: bool,
     /// The "first published" timestamp, represented as seconds since the Unix epoch. Stored for
     /// sorting.
     published_unix_time: i64,
@@ -336,7 +360,12 @@ struct TagContext {
 impl BlogState {
     fn index_context(&self) -> IndexContext {
         IndexContext {
-            tags: self.tags.keys().cloned().collect(),
+            tags: self
+                .tags_sorted
+                .iter()
+                .map(|(name, _)| name)
+                .cloned()
+                .collect(),
             posts: self.by_time.iter().map(|(_, i)| i).cloned().rev().collect(),
         }
     }

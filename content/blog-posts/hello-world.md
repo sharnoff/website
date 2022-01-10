@@ -3,6 +3,7 @@ description = 'An introduction to me and the site'
 first_published = 'Sun, 09 Jan 2022 15:21:52 -0800'
 updated = []
 tags = []
+is_hidden = false
 +++
 
 Hey there! Welcome.
