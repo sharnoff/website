@@ -47,13 +47,13 @@ elif [[ $# -ne 0 ]]; then
     print_usage_and_exit
 fi
 
-dry_run_cmd="rsync -avn --exclude-from=.rsync-exclude $dir max@sharnoff.io:~/website"
-actual_cmd="rsync -avz --exclude-from=.rsync-exclude $dir max@sharnoff.io:~/website"
+dry_run_cmd="rsync -avcn --delete --exclude-from=.rsync-exclude $dir max@sharnoff.io:~/website"
+actual_cmd="rsync -avcz --delete --exclude-from=.rsync-exclude $dir max@sharnoff.io:~/website"
 
 echo ':: Performing dry-run...'
 echo ":: > $dry_run_cmd"
 
-$dry_run_cmd | indent "$INDENT_STR"
+$dry_run_cmd | sed -e 's/^deleting/\x1b[31mdeleting\x1b[0m/g' | indent "$INDENT_STR"
 
 while true; do
     echo -n ':: Confirm? [y/n] '
@@ -85,7 +85,7 @@ if grep -q "^${INDENT_STR}content/photos/." <(echo "$cmd_output"); then
     updates="photos"
 fi
 
-if grep -q "^${INDENT_STR}content/blog-posts/." <(echo "$cmd_output"); then
+if grep -qE "^${INDENT_STR}(deleting |)content/blog-posts/." <(echo "$cmd_output"); then
     updates="$updates blog"
 fi
 
