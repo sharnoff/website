@@ -99,16 +99,16 @@ if [[ ! -z "$updates" ]]; then
     echo ':: Done'
 fi
 
-if grep -q "^${INDENT_STR}Caddyfile" <(echo "$cmd_output"); then
-    echo -n ':: Caddyfile has been updated. Reload? [y/n] '
+if grep -q "^${INDENT_STR}caddy.json" <(echo "$cmd_output"); then
+    echo -n ':: caddy.json has been updated. Reload? [y/n] '
     while true; do
         read resp
         case "$resp" in
             'y')
                 echo ':: Reloading caddy...'
-                echo ":: > ssh max@sharnoff.io 'caddy reload --config=website/Caddyfile'"
+                echo ":: > ssh max@sharnoff.io 'caddy reload --config=website/caddy.json'"
 
-                ssh max@sharnoff.io 'caddy reload --config=website/Caddyfile' | indent "$INDENT_STR"
+                ssh max@sharnoff.io 'caddy reload --config=website/caddy.json' | indent "$INDENT_STR"
 
                 echo ':: Done'
                 break
@@ -117,7 +117,7 @@ if grep -q "^${INDENT_STR}Caddyfile" <(echo "$cmd_output"); then
                 break
                 ;;
             *)
-                echo -n ':: Copy over Caddyfile? [y/n] '
+                echo -n ':: Copy over caddy.json? [y/n] '
                 ;;
         esac
     done
