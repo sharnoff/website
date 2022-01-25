@@ -32,8 +32,10 @@ fn main() {
         .mount("/", routes![index, static_asset])
         .attach(Template::fairing());
 
-    blog::initialize();
-    photos::initialize();
+    if cfg!(not(debug_assertions)) {
+        blog::initialize();
+        photos::initialize();
+    }
 
     let updates_path_result = fs::canonicalize(UPDATE_PIPE_PATH)
         .with_context(|| format!("failed to canonicalize updates path {:?}", UPDATE_PIPE_PATH));
