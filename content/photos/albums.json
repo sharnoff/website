@@ -10,9 +10,11 @@
             "sf-layers",
             "snowy-seagull-sitting",
             "downtown-oaktown",
+			"dad-ggb-1",
             "tesco-bird-2",
             "dad-with-camera",
             "parks-rd",
+			"downtown-sf-nighttime-skyline",
             "contra-costa-rose",
             "mt-tam-vulture-1",
             "temescal-poppies-1",
@@ -34,7 +36,10 @@
 			"westpoint-bench-1", "westpoint-bench-2", "mt-tam-vulture-1", "mt-tam-vulture-2",
 			"kz-above-the-clouds", "pantoll-rd-overlook", "sf-layers", "sunset-crane",
 			"golden-duck-hiding", "golden-duck", "golden-duck-and-friend", "dad-with-camera",
-			"merritt-sanctuary-bird", "crack-in-the-sky"
+			"merritt-sanctuary-bird", "crack-in-the-sky", "dad-ggb-1", "sutro-sunset-1", "ggb-heli",
+			"dad-ggb-2", "cloudy-lands-end-sunset", "sutro-sunset-2", "dad-ggb-3", "ggbird-1",
+			"ggbird-2", "tripod-silhouette", "rocky-span", "remote-ridgeline", "boat-passing-under",
+			"ggb-sf-bb", "downtown-sf-nighttime-skyline"
         ]
     }],
     ["oxford", {
@@ -99,7 +104,7 @@
         ]
     }],
     ["wander-2021-07-06", {
-        "name": "Neighborhood Wander — Jul. 7 2021",
+        "name": "Neighborhood Wander — Jul. 6 2021",
         "kind": { "day": "2021-07-06" },
         "display": "from_first",
         "description": "One of my first \"proper\" adventures to go take some photos - just a long wander around the\nneighborhood.\n\nI was on the phone with my good friend Jack (who is also into photography) for most of the walk,\noccasionally interrupting \"wait sorry, gimme a sec - I gotta get a picture of this!\"\n\nThe neighborhood is in the Oakland hills (or: at least one set of them), and I spent some time over\nat Lake Temescal before meandering back in roughly the way I came.\n\n---\n\nBefore I _quite_ got home, I decided to go up a side street for a little bit, where I was greeted by\nan unexpectedly friendly cat! It didn't seem particularly keen on pets, but was all too happy to be\na model. My favorite of the bunch is [\"Inattentive Monarch\"]\n\n[\"Inattentive Monarch\"]: /photos/view/inattentive-monarch?album=wander-2021-07-06\n",
@@ -109,5 +114,18 @@
             "contra-costa-rose", "buena-vista-rose-1", "buena-vista-rose-2", "death-stare",
             "inattentive-monarch", "feline-focus", "eyes-in-the-dark"
         ]
-    }]
+    }],
+	["marin-sunset-jan-2022", {
+		"name": "Marin Sunset — Jan. 9 2022",
+		"kind": { "day": "2022-01-09" },
+		"display": "from_first",
+		"description": "After a small amount of nagging, I convinced my dad to take me out to the Marin Headlands to get\nphotos of the Golden Gate at sunset.\n\nWe'd gotten there a little late -- after golden hour had already ended, but there was still plenty\nof light.\n\nAfter spending a bit of time at the popular vista on Conzelman Rd, we split ways -- with me\nscrambling down a rough path towards the rocky ridge below, and with my dad heading up to the top of\nHawk Hill.\n\nIt was one of my last few days of winter break before I had to fly back out to the UK. The views\nwere incredible, and I discovered some neat new spots!\n",
+		"cover_img": "ggb-heli",
+		"photos": [
+			"dad-ggb-1", "sutro-sunset-1", "ggb-heli", "dad-ggb-2", "cloudy-lands-end-sunset",
+			"sutro-sunset-2", "dad-ggb-3", "ggbird-1", "ggbird-2", "tripod-silhouette",
+			"rocky-span", "remote-ridgeline", "boat-passing-under", "ggb-sf-bb",
+			"downtown-sf-nighttime-skyline"
+		]
+	}]
 ]
