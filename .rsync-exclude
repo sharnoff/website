@@ -2,3 +2,4 @@ target
 .git
 bin
 updated
+caddy_schema.json
