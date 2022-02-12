@@ -5,22 +5,22 @@
         "description": "A selection of my favorite photos, in order of whatever I was most in love with last\n",
         "cover_img": "abandoned-railway-bridge",
         "photos": [
+			"sheepsplosion",
             "abandoned-railway-bridge",
             "inattentive-monarch",
             "sf-layers",
+			"oak-tunnel-1",
             "snowy-seagull-sitting",
             "downtown-oaktown",
 			"dad-ggb-1",
-            "tesco-bird-2",
+			"sheep-stare",
             "dad-with-camera",
             "parks-rd",
 			"downtown-sf-nighttime-skyline",
-            "contra-costa-rose",
             "mt-tam-vulture-1",
             "temescal-poppies-1",
             "duckshake",
-            "tree-fungus",
-            "succulent-sunset"
+            "tree-fungus"
         ]
     }],
     ["bay-area", {
@@ -55,7 +55,10 @@
 			"merton-birds-3", "parks-rd", "woe-is-the-bodleian", "house-on-the-thames",
 			"meadows-cow", "sheepless-field", "tesco-bird-1", "tesco-bird-2",
 			"snowy-seagull-landing", "snowy-seagull-sitting", "meadow-snowdrops",
-			"abandoned-railway-bridge"
+			"abandoned-railway-bridge", "southbound-sunrise-streaks", "peachy-sunrise",
+			"oak-tunnel-1", "untitled-1", "oak-tunnel-2", "sheepsplosion", "jacobs-fencegate",
+			"sheep-stare", "ovine-gossip", "smug-sheep-1", "smug-sheep-2", "sparrowhawk-perched",
+			"solitary-signpost"
         ]
     }],
     ["york", {
@@ -73,14 +76,15 @@
         "name": "Animals",
         "display": "from_last",
         "description": "All the best photos of furry, feathery, or otherwise cuddly animal friends :)\n",
-        "cover_img": "snowy-seagull-sitting",
+        "cover_img": "smug-sheep-1",
         "photos": [
 			"death-stare", "inattentive-monarch", "feline-focus", "eyes-in-the-dark",
 			"mt-tam-vulture-1", "mt-tam-vulture-2", "golden-duck-hiding", "golden-duck",
 			"golden-duck-and-friend", "merritt-sanctuary-bird", "eager-squirrel", "seagull-swoop",
 			"duck-on-the-rocks", "duckshake", "merton-birds-1", "merton-birds-2", "merton-birds-3",
 			"meadows-cow", "tesco-bird-1", "tesco-bird-2", "snowy-seagull-landing",
-			"snowy-seagull-sitting"
+			"snowy-seagull-sitting", "sheep-stare", "ovine-gossip", "smug-sheep-1", "smug-sheep-2",
+			"sparrowhawk-perched"
         ]
     }],
     ["alpine-terrace-cat", {
@@ -126,6 +130,18 @@
 			"sutro-sunset-2", "dad-ggb-3", "ggbird-1", "ggbird-2", "tripod-silhouette",
 			"rocky-span", "remote-ridgeline", "boat-passing-under", "ggb-sf-bb",
 			"downtown-sf-nighttime-skyline"
+		]
+	}],
+	["sunrise-hike-jan-30-2022", {
+		"name": "Sunrise Hike — Jan. 30 2022",
+		"kind": { "day": "2022-01-30" },
+		"display": "from_first",
+		"description": "There's a particular hill about an hour's walk from the center of Oxford that -- for a while -- I'd\nbeen meaning to watch the sunrise from.\n\nOne particular Sunday morning, I got up early (-ish; my sleep scheudle was wacky) and dragged my\nfriend Jacob with me to go for a bit of an adventure to watch the sunrise.\n\nWe already knew the way, so getting there was easy-peezy. And while the sunrise itself wasn't\nparticularly thrilling (clear skies meant there wasn't much to see), the lighting immediately\nafterwards was otherworldly.\n\nA bunch of the photos quickly became favorites, and even a trek through ankle-deep mud on the way\nback didn't dampen my spirits.\n",
+		"cover_img": "sheepsplosion",
+		"photos": [
+			"southbound-sunrise-streaks", "peachy-sunrise", "oak-tunnel-1", "untitled-1",
+			"oak-tunnel-2", "sheepsplosion", "jacobs-fencegate", "sheep-stare", "ovine-gossip",
+			"smug-sheep-1", "smug-sheep-2", "sparrowhawk-perched", "solitary-signpost"
 		]
 	}]
 ]
