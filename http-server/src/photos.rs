@@ -480,7 +480,7 @@ impl PhotosState {
         let candidates = glob(&glob_pat)
             .expect("failed to read glob pattern")
             .map(|glob_result| {
-                let path = glob_result.context("failed to get glob item for blog posts")?;
+                let path = glob_result.context("failed to get glob item for images")?;
 
                 let file_name: PathBuf = path
                     .file_prefix()
