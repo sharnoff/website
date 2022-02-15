@@ -118,6 +118,7 @@ do_set () {
     set_time "$1"
     set_copyright "$1"
     set_gps "$1"
+    set_lens "$1"
 }
 
 set_title () {
@@ -340,6 +341,43 @@ set_gps () {
         | indent "$EXIFTOOL_INDENT"
 
     # exiftool -s3 -coordFormat %+.6f -GPSPosition <file>
+}
+
+# Exiftool will lie about the LensMake and LensModel fields if it's able to get the information from
+# elsewhere. So we need to explicitly overwrite them with the calculated information.
+#
+# And sometimes it's able to get LensModel but not LensMake.
+set_lens () {
+    lens_fields="$(exiftool -json -s -LensMake -LensModel "$1" | jq '.[0] | del(.SourceFile)')"
+
+    lens_make="$(echo "$lens_fields" | jq -r '.LensMake // empty')"
+    lens_model="$(echo "$lens_fields" | jq -r '.LensModel // empty')"
+
+    if [[ ! -z "$lens_model" ]]; then
+        if [[ -z "$lens_make" ]]; then
+            echo ":: LensModel found ($lens_model) but no LensMake found"
+            while true; do
+                echo -n ': Please enter the LensMake (manufacturer): '
+                read make
+
+                if [[ -z "$make" ]]; then
+                    echo '    > LensMake must be non-empty.'
+                    continue
+                fi
+
+                make="=$make"
+                break
+            done
+        else
+            make='<LensMake'
+        fi
+
+        echo ':: Setting lens make & model...'
+        exiftool -overwrite_original "-LensMake$make" '-LensModel<LensModel' "$1" \
+            | indent "$EXIFTOOL_INDENT"
+    else
+        echo ':: Warning: no lens model'
+    fi
 }
 
 # Usage: <cmd> | indent <string>
