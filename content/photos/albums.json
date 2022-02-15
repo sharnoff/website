@@ -3,15 +3,18 @@
         "name": "Favorites",
         "display": "from_first",
         "description": "A selection of my favorite photos, in order of whatever I was most in love with last\n",
-        "cover_img": "abandoned-railway-bridge",
+        "cover_img": "meadow-goose-2",
         "photos": [
+			"meadow-goose-2",
 			"sheepsplosion",
             "abandoned-railway-bridge",
+			"please-help-jesus-loves",
             "inattentive-monarch",
             "sf-layers",
 			"oak-tunnel-1",
             "snowy-seagull-sitting",
             "downtown-oaktown",
+			"cherry-pigeon",
 			"dad-ggb-1",
 			"sheep-stare",
             "dad-with-camera",
@@ -58,7 +61,9 @@
 			"abandoned-railway-bridge", "southbound-sunrise-streaks", "peachy-sunrise",
 			"oak-tunnel-1", "untitled-1", "oak-tunnel-2", "sheepsplosion", "jacobs-fencegate",
 			"sheep-stare", "ovine-gossip", "smug-sheep-1", "smug-sheep-2", "sparrowhawk-perched",
-			"solitary-signpost"
+			"solitary-signpost", "bus-city-st-aldates", "please-help-jesus-loves", "meadow-goose-1",
+			"meadow-goose-2", "meadow-goose-3", "chch-at-sunset", "st-hildas-across-the-cherwell",
+			"st-aldates-phantom", "cherry-pigeon"
         ]
     }],
     ["york", {
@@ -84,7 +89,7 @@
 			"duck-on-the-rocks", "duckshake", "merton-birds-1", "merton-birds-2", "merton-birds-3",
 			"meadows-cow", "tesco-bird-1", "tesco-bird-2", "snowy-seagull-landing",
 			"snowy-seagull-sitting", "sheep-stare", "ovine-gossip", "smug-sheep-1", "smug-sheep-2",
-			"sparrowhawk-perched"
+			"sparrowhawk-perched", "meadow-goose-1", "meadow-goose-2", "meadow-goose-3", "cherry-pigeon"
         ]
     }],
     ["alpine-terrace-cat", {
