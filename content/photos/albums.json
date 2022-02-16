@@ -38,12 +38,15 @@
             "temescal-poppies-2", "contra-costa-rose", "buena-vista-rose-1", "buena-vista-rose-2",
 			"death-stare", "inattentive-monarch", "feline-focus", "eyes-in-the-dark",
 			"westpoint-bench-1", "westpoint-bench-2", "mt-tam-vulture-1", "mt-tam-vulture-2",
-			"kz-above-the-clouds", "pantoll-rd-overlook", "sf-layers", "sunset-crane",
-			"golden-duck-hiding", "golden-duck", "golden-duck-and-friend", "dad-with-camera",
-			"merritt-sanctuary-bird", "crack-in-the-sky", "dad-ggb-1", "sutro-sunset-1", "ggb-heli",
-			"dad-ggb-2", "cloudy-lands-end-sunset", "sutro-sunset-2", "dad-ggb-3", "ggbird-1",
-			"ggbird-2", "tripod-silhouette", "rocky-span", "remote-ridgeline", "boat-passing-under",
-			"ggb-sf-bb", "downtown-sf-nighttime-skyline"
+			"kz-above-the-clouds", "pantoll-rd-overlook",
+			"sf-layers",
+			"sunset-crane", "golden-duck-hiding", "golden-duck", "golden-duck-and-friend",
+			"dad-with-camera", "merritt-sanctuary-bird",
+			"crack-in-the-sky",
+			"dad-ggb-1", "sutro-sunset-1", "ggb-heli", "dad-ggb-2", "cloudy-lands-end-sunset",
+			"sutro-sunset-2", "dad-ggb-3", "ggbird-1", "ggbird-2", "tripod-silhouette",
+			"rocky-span", "remote-ridgeline", "boat-passing-under", "ggb-sf-bb",
+			"downtown-sf-nighttime-skyline"
         ]
     }],
     ["oxford", {
@@ -54,17 +57,21 @@
         "cover_img": "boathouse-bridge",
         "photos": [
             "meadows-morning-tiles", "cherwell-fog", "eager-squirrel", "glowing-fog-tree",
-			"boathouse-bridge", "morning-glory", "maple-in-the-water", "quiet-bench",
-			"seagull-swoop", "duck-on-the-rocks", "duckshake", "merton-birds-1", "merton-birds-2",
-			"merton-birds-3", "parks-rd", "woe-is-the-bodleian", "house-on-the-thames",
-			"meadows-cow", "sheepless-field", "tesco-bird-1", "tesco-bird-2",
+			"boathouse-bridge",
+			"morning-glory",
+			"maple-in-the-water", "quiet-bench", "seagull-swoop", "duck-on-the-rocks", "duckshake",
+			"merton-birds-1", "merton-birds-2", "merton-birds-3", "parks-rd", "woe-is-the-bodleian",
+			"house-on-the-thames", "meadows-cow",
+			"sheepless-field", "tesco-bird-1", "tesco-bird-2",
 			"snowy-seagull-landing", "snowy-seagull-sitting", "meadow-snowdrops",
-			"abandoned-railway-bridge", "southbound-sunrise-streaks", "peachy-sunrise",
-			"oak-tunnel-1", "untitled-1", "oak-tunnel-2", "sheepsplosion", "jacobs-fencegate",
-			"sheep-stare", "ovine-gossip", "smug-sheep-1", "smug-sheep-2", "sparrowhawk-perched",
-			"solitary-signpost", "bus-city-st-aldates", "please-help-jesus-loves", "meadow-goose-1",
-			"meadow-goose-2", "meadow-goose-3", "chch-at-sunset", "st-hildas-across-the-cherwell",
-			"st-aldates-phantom", "cherry-pigeon", "life-goes-by-1", "life-goes-by-2"
+			"abandoned-railway-bridge",
+			"southbound-sunrise-streaks", "peachy-sunrise", "oak-tunnel-1", "untitled-1",
+			"oak-tunnel-2", "sheepsplosion", "jacobs-fencegate", "sheep-stare", "ovine-gossip",
+			"smug-sheep-1", "smug-sheep-2", "sparrowhawk-perched", "solitary-signpost",
+			"bus-city-st-aldates", "please-help-jesus-loves", "meadow-goose-1", "meadow-goose-2",
+			"meadow-goose-3", "chch-at-sunset", "st-hildas-across-the-cherwell",
+			"st-aldates-phantom", "cherry-pigeon",
+			"life-goes-by-1", "life-goes-by-2"
         ]
     }],
     ["york", {
@@ -85,12 +92,16 @@
         "cover_img": "smug-sheep-1",
         "photos": [
 			"death-stare", "inattentive-monarch", "feline-focus", "eyes-in-the-dark",
-			"mt-tam-vulture-1", "mt-tam-vulture-2", "golden-duck-hiding", "golden-duck",
-			"golden-duck-and-friend", "merritt-sanctuary-bird", "eager-squirrel", "seagull-swoop",
-			"duck-on-the-rocks", "duckshake", "merton-birds-1", "merton-birds-2", "merton-birds-3",
-			"meadows-cow", "tesco-bird-1", "tesco-bird-2", "snowy-seagull-landing",
-			"snowy-seagull-sitting", "sheep-stare", "ovine-gossip", "smug-sheep-1", "smug-sheep-2",
-			"sparrowhawk-perched", "meadow-goose-1", "meadow-goose-2", "meadow-goose-3", "cherry-pigeon"
+			"mt-tam-vulture-1", "mt-tam-vulture-2",
+			"golden-duck-hiding", "golden-duck", "golden-duck-and-friend", "merritt-sanctuary-bird",
+			"eager-squirrel",
+			"seagull-swoop", "duck-on-the-rocks", "duckshake",
+			"merton-birds-1", "merton-birds-2", "merton-birds-3",
+			"meadows-cow",
+			"tesco-bird-1", "tesco-bird-2",
+			"snowy-seagull-landing", "snowy-seagull-sitting",
+			"sheep-stare", "ovine-gossip", "smug-sheep-1", "smug-sheep-2", "sparrowhawk-perched",
+			"meadow-goose-1", "meadow-goose-2", "meadow-goose-3", "cherry-pigeon"
         ]
     }],
     ["alpine-terrace-cat", {
