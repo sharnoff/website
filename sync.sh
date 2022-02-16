@@ -21,7 +21,7 @@ print_usage_and_exit () {
 # Prefixes <string> to all lines on STDIN and outputs them. The prefix string must not contain any
 # slashes; this will cause failures
 indent () {
-    sed -e "s/^/$1/g"
+    sed -u -e "s/^/$1/g"
 }
 
 INDENT_STR="    " # 4 spaces
