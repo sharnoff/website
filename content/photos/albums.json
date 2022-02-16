@@ -6,12 +6,14 @@
         "cover_img": "meadow-goose-2",
         "photos": [
 			"meadow-goose-2",
+			"perched-long-tailed-tit",
 			"life-goes-by-1",
 			"sheepsplosion",
             "abandoned-railway-bridge",
 			"please-help-jesus-loves",
             "inattentive-monarch",
             "sf-layers",
+			"takeoff",
 			"oak-tunnel-1",
             "snowy-seagull-sitting",
             "downtown-oaktown",
@@ -72,7 +74,10 @@
 			"bus-city-st-aldates", "please-help-jesus-loves", "meadow-goose-1", "meadow-goose-2",
 			"meadow-goose-3", "chch-at-sunset", "st-hildas-across-the-cherwell",
 			"st-aldates-phantom", "cherry-pigeon",
-			"life-goes-by-1", "life-goes-by-2"
+			"life-goes-by-1", "life-goes-by-2",
+			"takeoff", "upside-down", "peeking-robin-1", "peeking-robin-2",
+			"perched-long-tailed-tit", "hanging-out", "magpie-strut", "duck-stomp",
+			"majestic-magpie-1", "majestic-magpie-2", "lonely-leaf"
         ]
     }],
     ["york", {
@@ -90,7 +95,7 @@
         "name": "Animals",
         "display": "from_last",
         "description": "All the best photos of furry, feathery, or otherwise cuddly animal friends :)\n",
-        "cover_img": "smug-sheep-1",
+        "cover_img": "takeoff",
         "photos": [
 			"death-stare", "inattentive-monarch", "feline-focus", "eyes-in-the-dark",
 			"mt-tam-vulture-1", "mt-tam-vulture-2",
@@ -102,7 +107,10 @@
 			"tesco-bird-1", "tesco-bird-2",
 			"snowy-seagull-landing", "snowy-seagull-sitting",
 			"sheep-stare", "ovine-gossip", "smug-sheep-1", "smug-sheep-2", "sparrowhawk-perched",
-			"meadow-goose-1", "meadow-goose-2", "meadow-goose-3", "cherry-pigeon"
+			"meadow-goose-1", "meadow-goose-2", "meadow-goose-3", "cherry-pigeon",
+			"takeoff", "upside-down", "peeking-robin-1", "peeking-robin-2",
+			"perched-long-tailed-tit", "hanging-out", "magpie-strut", "duck-stomp",
+			"majestic-magpie-1", "majestic-magpie-2"
         ]
     }],
     ["alpine-terrace-cat", {
