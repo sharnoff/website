@@ -21,6 +21,7 @@ use std::time::Duration;
 mod blog;
 #[macro_use] // <- gives us `photos_routes!`
 mod photos;
+mod log_404;
 mod util;
 
 use util::FifoFile;
@@ -30,7 +31,8 @@ fn main() {
         .mount("/blog", blog_routes!())
         .mount("/photos", photos_routes!())
         .mount("/", routes![index, static_asset])
-        .attach(Template::fairing());
+        .attach(Template::fairing())
+        .attach(log_404::Log404);
 
     if cfg!(not(debug_assertions)) {
         blog::initialize();
