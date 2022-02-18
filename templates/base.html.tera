@@ -35,7 +35,7 @@
 
     <footer id="site-footer">
         {% block footer %}
-            <p>&copy; Copyright Max Sharnoff 2021</p>
+            <p>&copy; Copyright Max Sharnoff 2022</p>
         {% endblock footer %}
     </footer>
     {% endblock full_body %}
