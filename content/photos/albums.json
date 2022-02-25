@@ -10,8 +10,10 @@
 			"life-goes-by-1",
 			"sheepsplosion",
             "abandoned-railway-bridge",
+			"uni-parks-squirrel-2",
 			"please-help-jesus-loves",
             "inattentive-monarch",
+			"meadow-tree-squirrel-1",
             "sf-layers",
 			"takeoff",
 			"oak-tunnel-1",
@@ -21,12 +23,14 @@
 			"dad-ggb-1",
 			"sheep-stare",
             "dad-with-camera",
+			"the-dancer",
             "parks-rd",
 			"downtown-sf-nighttime-skyline",
             "mt-tam-vulture-1",
             "temescal-poppies-1",
             "duckshake",
-            "tree-fungus"
+            "tree-fungus",
+			"river-crow-2"
         ]
     }],
     ["bay-area", {
@@ -56,7 +60,7 @@
         "kind": "location",
         "display": "from_last",
         "description": "A collection of photos taken during my time as a student at Oxford",
-        "cover_img": "boathouse-bridge",
+        "cover_img": "golden-tower",
         "photos": [
             "meadows-morning-tiles", "cherwell-fog", "eager-squirrel", "glowing-fog-tree",
 			"boathouse-bridge",
@@ -77,7 +81,14 @@
 			"life-goes-by-1", "life-goes-by-2",
 			"takeoff", "upside-down", "peeking-robin-1", "peeking-robin-2",
 			"perched-long-tailed-tit", "hanging-out", "magpie-strut", "duck-stomp",
-			"majestic-magpie-1", "majestic-magpie-2", "lonely-leaf"
+			"majestic-magpie-1", "majestic-magpie-2", "lonely-leaf",
+			"city-corrupts-itself", "duck-dock", "quack-snack", "backbone-hiker", "golden-tower",
+			"please-sanitise", "moon-2022-02-19",
+			"streetlamp-watercolor", "the-dancer", "seagull-at-the-park", "uni-parks-squirrel-1",
+			"uni-parks-squirrel-2", "pinkest-cherry-blossoms",
+			"angry-goose-1", "angry-goose-2", "river-crow-1", "river-crow-2",
+			"masters-of-the-sky-1", "corvid-dive", "meadow-tree-squirrel-1", "masters-of-the-sky-2",
+			"meadow-tree-squirrel-2"
         ]
     }],
     ["york", {
@@ -110,7 +121,11 @@
 			"meadow-goose-1", "meadow-goose-2", "meadow-goose-3", "cherry-pigeon",
 			"takeoff", "upside-down", "peeking-robin-1", "peeking-robin-2",
 			"perched-long-tailed-tit", "hanging-out", "magpie-strut", "duck-stomp",
-			"majestic-magpie-1", "majestic-magpie-2"
+			"majestic-magpie-1", "majestic-magpie-2",
+			"the-dancer", "seagull-at-the-park", "uni-parks-squirrel-1", "uni-parks-squirrel-2",
+			"angry-goose-1", "angry-goose-2", "river-crow-1", "river-crow-2",
+			"masters-of-the-sky-1", "corvid-dive", "meadow-tree-squirrel-1", "masters-of-the-sky-2",
+			"meadow-tree-squirrel-2"
         ]
     }],
     ["alpine-terrace-cat", {
