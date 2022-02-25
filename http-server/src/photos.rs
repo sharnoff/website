@@ -15,7 +15,7 @@ use rocket_contrib::templates::Template;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
 use std::collections::hash_map::Entry;
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeSet, HashMap};
 use std::fmt::{self, Debug, Formatter};
 use std::fs;
 use std::io::{self, Cursor, Write};
@@ -595,7 +595,7 @@ impl PhotosState {
                     .into_iter()
                     .map(|(_, auto)| {
                         let photos: Vec<_> =
-                            auto.photos.values().map(|p| images[p].clone()).collect();
+                            auto.photos.iter().map(|(_, p)| images[p].clone()).collect();
                         let a = Arc::new(Album {
                             path: auto.path.clone(),
                             name: auto.name,
@@ -724,14 +724,14 @@ impl PhotosState {
 
                         album
                             .photos
-                            .insert(exif_info.actual_datetime, file_string.to_owned());
+                            .insert((exif_info.actual_datetime, file_string.to_owned()));
                         v.insert(album).reference()
                     }
                     Entry::Occupied(mut o) => {
                         let album = o.get_mut();
                         album
                             .photos
-                            .insert(exif_info.actual_datetime, file_string.to_owned());
+                            .insert((exif_info.actual_datetime, file_string.to_owned()));
                         album.reference()
                     }
                 }
@@ -848,7 +848,7 @@ struct AutoDateAlbumBuilder {
     path: String,
     name: String,
     description: String,
-    photos: BTreeMap<DateTime<FixedOffset>, String>,
+    photos: BTreeSet<(DateTime<FixedOffset>, String)>,
 }
 
 impl AutoDateAlbumBuilder {
@@ -862,7 +862,7 @@ impl AutoDateAlbumBuilder {
             path: date.format("%Y-%m-%d").to_string(),
             name,
             description,
-            photos: BTreeMap::new(),
+            photos: BTreeSet::new(),
         }
     }
 
@@ -1214,6 +1214,47 @@ impl PhotoExifInfo {
                 datetime_value
             ),
         };
+
+        // It's also worth checking for any additional sub-second time data, if it's available
+        let subsec = exif
+            .get_field(Tag::SubSecTimeOriginal, In::PRIMARY)
+            .map(|f| &f.value);
+        if let Some(value) = subsec {
+            match value {
+                Value::Ascii(vs) if vs.len() == 1 => {
+                    // According to the spec, SubSecTime{,Original,Digitized} are ascii comprising
+                    // the digits following the decimal point.
+                    //
+                    // The length is unbounded, and the digits can be followed by any amount of
+                    // space characters before the end - which don't mean anything.
+
+                    // Only take at most 9 digits; maximum of 999_999_999 nanoseconds.
+                    let digits = vs[0].iter().take_while(|&&b| b != b' ').take(9);
+
+                    let mut ns = 0_u32;
+                    let mut ns_each = 100_000_000;
+
+                    for d in digits {
+                        if !(b'0'..=b'9').contains(d) {
+                            bail!("invalid digit {d:?} in SubSecTimeOriginal tag");
+                        }
+
+                        ns += ns_each * (d - b'0') as u32;
+                        ns_each /= 10;
+                    }
+
+                    dt.nanosecond = Some(ns);
+                }
+                Value::Ascii(_) => bail!(
+                    "expected single ASCII value in SubSecTimeOriginal tag, found {:?}",
+                    value,
+                ),
+                _ => bail!(
+                    "expected ASCII value for SubSecTimeOriginal tag, found {:?}",
+                    value,
+                ),
+            }
+        }
 
         let offset_value = &exif
             .get_field(Tag::OffsetTimeOriginal, In::PRIMARY)
