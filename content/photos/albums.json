@@ -5,6 +5,7 @@
         "description": "A selection of my favorite photos, in order of whatever I was most in love with last\n",
         "cover_img": "meadow-goose-2",
         "photos": [
+			"cherry-plum-bee",
 			"meadow-goose-2",
 			"perched-long-tailed-tit",
 			"life-goes-by-1",
@@ -14,6 +15,7 @@
 			"please-help-jesus-loves",
             "inattentive-monarch",
 			"meadow-tree-squirrel-1",
+			"port-meadow-kite-2",
             "sf-layers",
 			"takeoff",
 			"oak-tunnel-1",
@@ -88,7 +90,9 @@
 			"uni-parks-squirrel-2", "pinkest-cherry-blossoms",
 			"angry-goose-1", "angry-goose-2", "river-crow-1", "river-crow-2",
 			"masters-of-the-sky-1", "corvid-dive", "meadow-tree-squirrel-1", "masters-of-the-sky-2",
-			"meadow-tree-squirrel-2"
+			"meadow-tree-squirrel-2",
+			"port-meadow-kite-1", "port-meadow-kite-2", "port-meadow-kite-3", "port-snowdrop-1",
+			"port-snowdrop-2", "port-meadow-cherry-plum", "cherry-plum-bee"
         ]
     }],
     ["york", {
@@ -125,7 +129,8 @@
 			"the-dancer", "seagull-at-the-park", "uni-parks-squirrel-1", "uni-parks-squirrel-2",
 			"angry-goose-1", "angry-goose-2", "river-crow-1", "river-crow-2",
 			"masters-of-the-sky-1", "corvid-dive", "meadow-tree-squirrel-1", "masters-of-the-sky-2",
-			"meadow-tree-squirrel-2"
+			"meadow-tree-squirrel-2",
+			"port-meadow-kite-1", "port-meadow-kite-2", "port-meadow-kite-3"
         ]
     }],
     ["alpine-terrace-cat", {
